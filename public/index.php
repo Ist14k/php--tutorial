@@ -2,11 +2,11 @@
 
 session_start();
 
-// $_SESSION['loggedIn'] = true;
-// $_SESSION['user'] = [
-//     'id' => '1',
-//     'email' => 'istiak@example.com',
-// ];
+$_SESSION['loggedIn'] = true;
+$_SESSION['user'] = [
+    'id' => '1',
+    'email' => 'istiak@example.com',
+];
 
 const BASE_PATH = __DIR__ . '/../';
 
