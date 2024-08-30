@@ -4,8 +4,6 @@ session_start();
 $_SESSION['loggedIn'] = true;
 
 const BASE_PATH = __DIR__ . '/../';
-
-require BASE_PATH . 'env.php';
 require BASE_PATH . 'Core/functions.php';
 
 spl_autoload_register(function ($class) {

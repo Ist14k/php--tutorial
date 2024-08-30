@@ -4,7 +4,6 @@ use Core\App;
 use Core\Container;
 use Core\Database;
 
-require 'env.php';
 $config = require 'config.php';
 
 $container = new Container();
@@ -25,11 +24,12 @@ $container = new Container();
 // $data = $sss->fetchAll(PDO::FETCH_ASSOC);
 // dd($data);
 
+// dd($config['database']['username']);
 
 App::setContainer($container);
 
 App::bind(Database::class, function () {
     $config = require basePath('config.php');
 
-    return new Database($config['database'], 'root', 'ist14k@1108');
+    return new Database($config['database'], $config['database']['username'], $config['database']['password']);
 });
