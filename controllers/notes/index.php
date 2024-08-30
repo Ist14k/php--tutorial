@@ -5,6 +5,7 @@ use Core\Database;
 
 $db = App::resolve(Database::class);
 
+
 $heading = "My notes";
 $notes = [];
 

@@ -13,14 +13,19 @@ class Database
 
     public function __construct(
         $config,
-        string $username = 'root',
-        string $password = ''
+        string $username,
+        string $password,
     ) {
-        $dsn = 'mysql:' . http_build_query($config, '', ';');
+        $dsn = 'mysql:host=' . $config['host'] . ';dbname=' . $config['dbname'] . ';charset=' . $config['charset'];
+        // dd($dsn);
 
-        $this->pdo = new PDO($dsn, $username, $password, [
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        ]);
+        try {
+            $this->pdo = new PDO($dsn, $username, $password, [
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            ]);
+        } catch (\PDOException $e) {
+            throw new \Exception('' . $e->getMessage());
+        }
     }
 
     public function query(string $query_str, $params = []): self

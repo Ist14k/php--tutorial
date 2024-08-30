@@ -25,14 +25,14 @@ function abort($code, $message = ""): void
 
 function authorize($condition): void
 {
-    if ( ! $condition) {
+    if (!$condition) {
         abort(Response::FORBIDDEN, "Not authorized!");
     }
 }
 
 function basePath($path): string
 {
-    return BASE_PATH.$path;
+    return BASE_PATH . $path;
 }
 
 /**

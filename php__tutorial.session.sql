@@ -1,23 +1,20 @@
 DROP TABLE IF EXISTS notes;
 DROP TABLE IF EXISTS users;
---
 CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL
 );
---
 CREATE TABLE notes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL,
     body TEXT NOT NULL,
-    user_id INT,
+    user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
---
 INSERT INTO users (email, password)
-VALUES ('istiak@gmail.com', 'password');
---
+VALUES ('ist14k.akash@gmail.com', 'password');
 INSERT INTO notes (title, body, user_id)
-VALUES ('First Note', 'This is my first note', 1),
-    ('Second Note', 'This is my second note', 1);
+VALUES ('Note 1', 'This is note 1', 1),
+    ('Note 2', 'This is note 2', 1),
+    ('Note 3', 'This is note 3', 1);

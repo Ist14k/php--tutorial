@@ -11,12 +11,12 @@ $note = $db->query(
 )
   ->findOrFail();
 
-authorize($note['user_id'] === 2);
+authorize($note['user_id'] === 1);
 
 $heading = $note['title'];
 
 view('notes/show.view.php', [
   'heading' => $heading,
-  'note'    => $note,
+  'note' => $note,
 ]);
 

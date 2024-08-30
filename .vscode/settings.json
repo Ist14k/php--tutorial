@@ -8,11 +8,11 @@
             "previewLimit": 50,
             "server": "localhost",
             "port": 3306,
-            "driver": "MariaDB",
-            "name": "php__my_app",
-            "database": "php__my_app",
+            "driver": "MySQL",
+            "name": "php__tutorial",
+            "database": "php__tutorial",
             "username": "root",
-            "password": ""
+            "password": "ist14k@1108"
         }
     ]
 }
