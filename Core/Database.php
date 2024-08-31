@@ -7,7 +7,7 @@ use PDOStatement;
 
 class Database
 {
-    private PDO $pdo;
+    public PDO $pdo;
 
     private PDOStatement $statement;
 

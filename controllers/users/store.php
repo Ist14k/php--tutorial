@@ -57,11 +57,10 @@ $db->query(
   ]
 );
 
-$_SESSION['loggedIn'] = true;
-$_SESSION['user'] = [
+login([
   'id' => $db->pdo->lastInsertId(),
   'email' => $email,
-];
+]);
 
 header('Location: /');
 die();

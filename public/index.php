@@ -1,7 +1,8 @@
 <?php
 
 session_start();
-$_SESSION['loggedIn'] = true;
+// $_SESSION['loggedIn'] = true;
+
 
 const BASE_PATH = __DIR__ . '/../';
 require BASE_PATH . 'Core/functions.php';

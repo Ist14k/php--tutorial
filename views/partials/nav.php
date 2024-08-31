@@ -27,12 +27,22 @@
       </div>
       <div class="ml-10 flex items-baseline space-x-4">
         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-        <a href="/login" class="rounded-md px-3 py-2 text-sm font-medium text-white <?php
-        echo urlIs('/login') ? 'bg-gray-900 text-white'
-          : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?>" aria-current="page">Sign in</a>
-        <a href="/register" class="rounded-md px-3 py-2 text-sm font-medium text-white <?php
-        echo urlIs('/register') ? 'bg-gray-900 text-white'
-          : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?>" aria-current="page">Sign up</a>
+        <?php if ($_SESSION['loggedIn'] ?? false): ?>
+          <p class="text-white/80 font-semibold"><?= $_SESSION['user']['email'] ?></p>
+          <form action="/session">
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit"
+              class="rounded-md px-3 py-2 text-sm font-medium text-white bg-red-500 text-white hover:bg-red-700 hover:text-white"
+              aria-current="page">Logout</button>
+          </form>
+        <?php else: ?>
+          <a href="/login" class="rounded-md px-3 py-2 text-sm font-medium text-white <?php
+          echo urlIs('/login') ? 'bg-gray-900 text-white'
+            : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?>" aria-current="page">Sign in</a>
+          <a href="/register" class="rounded-md px-3 py-2 text-sm font-medium text-white <?php
+          echo urlIs('/register') ? 'bg-gray-900 text-white'
+            : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?>" aria-current="page">Sign up</a>
+        <?php endif; ?>
 
 
       </div>
@@ -47,12 +57,12 @@
           <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
             aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-          </svg>
-          <!-- Menu open: "block", Menu closed: "hidden" -->
-          <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-            aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
+
+            <!-- Menu open: "block", Menu closed: "hidden" -->
+            <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+              aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
         </button>
       </div>
     </div>

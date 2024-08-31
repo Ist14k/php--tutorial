@@ -1,2 +1,4 @@
 config.php
 *.session.sql
+.vscode
+.idea
