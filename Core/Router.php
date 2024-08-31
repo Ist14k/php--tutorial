@@ -62,7 +62,7 @@ class Router
                 //     Auth::check();
                 // }
 
-                require basePath($route['controller']);
+                require basePath('Http/Controllers/' . $route['controller']);
 
                 return;
             }
