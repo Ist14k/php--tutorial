@@ -18,6 +18,8 @@ $router->delete('/note', 'notes/destroy.php');
 // Users
 $router->get('/register', 'users/create.php')->only('guest');
 $router->post('/register', 'users/store.php');
+
+// Session
 $router->get('/login', 'session/create.php')->only('guest');
 $router->post('/session', 'session/store.php');
 $router->delete('/session', 'session/destroy.php')->only('auth');

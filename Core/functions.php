@@ -1,6 +1,7 @@
 <?php
 
 use Core\Response;
+use JetBrains\PhpStorm\NoReturn;
 
 function dd($data): void
 {
@@ -35,21 +36,12 @@ function basePath($path): string
     return BASE_PATH . $path;
 }
 
-function login($user)
+function login($user): void
 {
     $_SESSION['loggedIn'] = true;
     $_SESSION['user'] = $user;
 
     session_regenerate_id(true);
-}
-
-function logout()
-{
-    $_SESSION = [];
-    session_destroy();
-
-    $params = session_get_cookie_params();
-    setcookie('PHPSESSID', '', time() - 3600, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
 }
 
 /**
@@ -58,9 +50,15 @@ function logout()
  *
  * @return void
  */
-function view(string $view, array $data = []): void
+#[NoReturn] function view(string $view, array $data = []): void
 {
     extract($data);
 
     require basePath("views/{$view}");
+}
+
+#[NoReturn] function redirect($url): void
+{
+    header("Location: {$url}");
+    exit();
 }
