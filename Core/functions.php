@@ -1,6 +1,7 @@
 <?php
 
 use Core\Response;
+use Core\Session;
 use JetBrains\PhpStorm\NoReturn;
 
 function dd($data): void
@@ -26,20 +27,20 @@ function abort($code, $message = ""): void
 
 function authorize($condition): void
 {
-    if (!$condition) {
+    if( ! $condition) {
         abort(Response::FORBIDDEN, "Not authorized!");
     }
 }
 
 function basePath($path): string
 {
-    return BASE_PATH . $path;
+    return BASE_PATH.$path;
 }
 
 function login($user): void
 {
     $_SESSION['loggedIn'] = true;
-    $_SESSION['user'] = $user;
+    $_SESSION['user']     = $user;
 
     session_regenerate_id(true);
 }
@@ -61,4 +62,9 @@ function login($user): void
 {
     header("Location: {$url}");
     exit();
+}
+
+function old(string $key, $default = ''): string
+{
+    return Session::get('_flash', 'old')[$key] ?? $default;
 }

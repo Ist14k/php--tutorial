@@ -22,6 +22,7 @@ if($loginForm->validate($email, $password)) {
 }
 
 Session::flash('errors', $loginForm->errors());
+Session::flash('old', ['email' => $_POST['email']]);
 
 redirect('/login');
 
