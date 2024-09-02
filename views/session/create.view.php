@@ -1,7 +1,11 @@
 <?php
 
+use Core\Session;
+
 require basePath('views/partials/header.php');
 require basePath('views/partials/nav.php');
+
+$errors = Session::get('_flash')['errors'] ?? [];
 
 ?>
 

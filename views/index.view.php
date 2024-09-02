@@ -6,8 +6,8 @@ require "partials/header.php";
 require "partials/nav.php";
 require "partials/banner.php";
 
-$loggedIn = Session::get('_auth', 'loggedIn') ?? false;
-$user     = Session::get('_auth', 'user') ?? [];
+$loggedIn = Session::get('_auth')['loggedIn'] ?? false;
+$user     = Session::get('_auth')['user'] ?? [];
 ?>
 
   <main>

@@ -38,12 +38,11 @@
       <div class="ml-10 flex items-baseline space-x-4">
         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
           <?php
-          if(Session::get('_auth', 'loggedIn') ?? false): ?>
+          if(Session::get('_auth')['loggedIn'] ?? false): ?>
             <p
               class="text-white/80 font-semibold"><?= Session::get(
-                  '_auth',
-                  'user'
-                )['email'] ?></p>
+                  '_auth'
+                )['user']['email'] ?></p>
             <form action="/session" method="POST">
               <input type="hidden" name="_method" value="DELETE">
               <button type="submit"

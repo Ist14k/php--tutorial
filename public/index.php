@@ -11,7 +11,7 @@ spl_autoload_register(function($class) {
     require basePath("{$class}.php");
 });
 
-Core\Session::start();
+Session::start();
 
 require basePath('bootstrap.php');
 
@@ -21,6 +21,7 @@ $router = new Core\Router();
 
 require basePath('routes.php');
 
+//dd($_SESSION);
 $router->route($uri, $method);
 
 Session::destroySession('_flash');

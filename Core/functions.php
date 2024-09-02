@@ -66,5 +66,5 @@ function login($user): void
 
 function old(string $key, $default = ''): string
 {
-    return Session::get('_flash', 'old')[$key] ?? $default;
+    return Session::get('_flash')['old'][$key] ?? $default;
 }

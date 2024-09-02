@@ -24,8 +24,10 @@ class Authenticator
 
     public static function login($user): void
     {
-        Session::put('_auth.loggedIn', true);
-        Session::put('_auth.user', $user);
+        Session::put('_auth', [
+          'loggedIn' => true,
+          'user'     => $user,
+        ]);
 
         session_regenerate_id(true);
     }
