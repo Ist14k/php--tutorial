@@ -1,11 +1,11 @@
 <?php
 
 use Core\Authenticator;
+use Core\Session;
 use Http\Forms\LoginForm;
 
 if($_SESSION['loggedIn'] && $_SESSION['user']) {
-    header('Location: /');
-    exit();
+    redirect('/');
 }
 
 $loginForm = new LoginForm();
@@ -21,9 +21,9 @@ if($loginForm->validate($email, $password)) {
     $loginForm->addError('email', 'Invalid email or password');
 }
 
-view('session/create.view.php', [
-  'errors' => $loginForm->errors(),
-]);
+Session::flash('errors', $loginForm->errors());
+
+redirect('/login');
 
 
 

@@ -2,24 +2,29 @@
 
 namespace Core\Middleware;
 
+use Exception;
+
 class Middleware
 {
-    public const MAP = [
-        'auth' => Auth::class,
+    public const MAP
+      = [
+        'auth'  => Auth::class,
         'guest' => Guest::class,
-    ];
+      ];
 
-    public static function resolve($key)
+    /**
+     * @throws \Exception
+     */
+    public static function resolve($key): void
     {
-        if (!$key) {
+        if( ! $key) {
             return;
         }
 
-        if (!array_key_exists($key, static::MAP)) {
-            throw new \Exception("Middleware {$key} not found");
+        if( ! array_key_exists($key, static::MAP)) {
+            throw new Exception("Middleware {$key} not found");
         }
 
         $middleware = static::MAP[$key] ?? false;
-        $middleware::check();
     }
 }

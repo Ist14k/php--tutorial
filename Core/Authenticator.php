@@ -24,18 +24,19 @@ class Authenticator
 
     public static function login($user): void
     {
-        $_SESSION['loggedIn'] = true;
-        $_SESSION['user']     = $user;
+        Session::put('_auth.loggedIn', true);
+        Session::put('_auth.user', $user);
 
         session_regenerate_id(true);
     }
 
     public static function logout(): void
     {
-        $_SESSION = [];
+        Session::destroySession('_auth');
         session_destroy();
 
         $params = session_get_cookie_params();
+
         setcookie(
           'PHPSESSID',
           '',
