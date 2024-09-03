@@ -4,13 +4,8 @@ use Core\Session;
 use Core\ValidationException;
 
 const BASE_PATH = __DIR__.'/../';
+require BASE_PATH.'vendor/autoload.php';
 require BASE_PATH.'Core/functions.php';
-
-spl_autoload_register(function($class) {
-    $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
-
-    require basePath("{$class}.php");
-});
 
 Session::start();
 
@@ -22,7 +17,6 @@ $router = new Core\Router();
 
 require basePath('routes.php');
 
-//dd($_SESSION);
 try {
     $router->route($uri, $method);
 } catch(ValidationException $e) {

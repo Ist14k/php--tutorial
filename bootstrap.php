@@ -9,9 +9,7 @@ $config = require 'config.php';
 $username = "{$config['database']['username']}";
 $password = "{$config['database']['password']}";
 
-$container = new Container();
-
-App::setContainer($container);
+App::setContainer(new Container());
 
 App::bind(Database::class, function () {
     $config = require basePath('config.php');

@@ -1,0 +1,16 @@
+{
+    "name": "istiak/php--tutorial",
+    "authors": [
+        {
+            "name": "Istiak Ahmmed Akash",
+            "email": "istiak_akash@outlook.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core/",
+            "Http\\": "Http/"
+        }
+    }
+}
