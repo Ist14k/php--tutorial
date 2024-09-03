@@ -1,7 +1,9 @@
 <?php
 
 namespace Core;
+
 use Core\Middleware\Middleware;
+use JetBrains\PhpStorm\NoReturn;
 
 class Router
 {
@@ -10,9 +12,9 @@ class Router
     protected function addRoute($uri, $controller, $method)
     {
         $this->routes[] = [
-            'uri' => $uri,
-            'controller' => $controller,
-            'method' => $method,
+          'uri'        => $uri,
+          'controller' => $controller,
+          'method'     => $method,
         ];
 
         return $this;
@@ -50,9 +52,16 @@ class Router
 
     public function route(string $uri, string $method): void
     {
-        foreach ($this->routes as $route) {
-            if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
-                isset($route['middleware']) && Middleware::resolve($route['middleware']);
+        foreach($this->routes as $route) {
+            if($route['uri'] === $uri
+              && $route['method'] === strtoupper(
+                $method
+              )
+            ) {
+                isset($route['middleware'])
+                && Middleware::resolve(
+                  $route['middleware']
+                );
 
                 // if (isset($route['middleware']) && $route['middleware'] === 'guest') {
                 //     Guest::check();
@@ -62,7 +71,7 @@ class Router
                 //     Auth::check();
                 // }
 
-                require basePath('Http/Controllers/' . $route['controller']);
+                require basePath('Http/Controllers/'.$route['controller']);
 
                 return;
             }
@@ -71,7 +80,12 @@ class Router
         $this->abort(404, 'Page not found');
     }
 
-    protected function abort(int $code, string $message): void
+    public static function previousUrl(): string
+    {
+        return $_SERVER['HTTP_REFERER'];
+    }
+
+    #[NoReturn] public static function abort(int $code, string $message): void
     {
         http_response_code($code);
         die($message);

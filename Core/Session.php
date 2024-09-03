@@ -24,7 +24,7 @@ class Session
         return $_SESSION[$key] ?? null;
     }
 
-    public static function destroySession(string $key): void
+    public static function flush(string $key): void
     {
         unset($_SESSION[$key]);
     }

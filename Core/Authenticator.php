@@ -34,8 +34,7 @@ class Authenticator
 
     public static function logout(): void
     {
-        Session::destroySession('_auth');
-        session_destroy();
+        Session::flush('_auth');
 
         $params = session_get_cookie_params();
 
